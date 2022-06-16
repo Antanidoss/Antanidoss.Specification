@@ -16,5 +16,11 @@ namespace QueryableFilterSpecification
         {
             return new OrIQueryableFilterSpec<TEntityType>(firstFilter, secondFilter);
         }
+
+        public static IQueryableFilterSpec<TEntityType> WrapInBrackets<TEntityType>(this IQueryableFilterSpec<TEntityType> filter)
+            where TEntityType : class
+        {
+            return new WrapBracketsIQueryableFilterSpec<TEntityType>(filter);
+        }
     }
 }
