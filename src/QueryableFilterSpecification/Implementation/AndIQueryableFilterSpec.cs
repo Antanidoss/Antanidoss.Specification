@@ -1,5 +1,6 @@
 ﻿using LinqKit;
 using QueryableFilterSpecification.Interfaces;
+using QueryableFilterSpecification.Validations;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -15,6 +16,9 @@ namespace QueryableFilterSpecification.Implementation
 
         public AndIQueryableFilterSpec(IQueryableFilterSpec<TEntityType> firstFilter, IQueryableFilterSpec<TEntityType> secondFilter)
         {
+            FilterValidations.ThowExepceptionIfFilterNull(firstFilter);
+            FilterValidations.ThowExepceptionIfFilterNull(firstFilter);
+
             _firstFilter = firstFilter;
             _secondFilter = secondFilter;
         }

@@ -1,5 +1,6 @@
 ﻿using LinqKit;
 using QueryableFilterSpecification.Interfaces;
+using QueryableFilterSpecification.Validations;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -15,6 +16,9 @@ namespace QueryableFilterSpecification.Implementation
 
         public OrIQueryableFilterSpec(IQueryableFilterSpec<TEntityType> firstFilter, IQueryableFilterSpec<TEntityType> secondFilter)
         {
+            FilterValidations.ThowExepceptionIfFilterNull(firstFilter);
+            FilterValidations.ThowExepceptionIfFilterNull(firstFilter);
+
             _firstFilter = firstFilter;
             _secondFilter = secondFilter;
         }
@@ -26,9 +30,6 @@ namespace QueryableFilterSpecification.Implementation
 
         public Expression<Func<TEntityType, bool>> ToExpression()
         {
-            if (_firstFilter == null) return _secondFilter.ToExpression();
-            else if (_secondFilter == null) return _firstFilter.ToExpression();
-
             return _firstFilter.ToExpression().Or(_secondFilter.ToExpression());
         }
     }
