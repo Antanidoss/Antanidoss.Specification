@@ -1,5 +1,6 @@
 ﻿using LinqKit;
 using QueryableFilterSpecification.Interfaces;
+using QueryableFilterSpecification.Validations;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -13,6 +14,8 @@ namespace QueryableFilterSpecification.Implementation
 
         public WrapBracketsIQueryableFilterSpec(IQueryableFilterSpec<TEntityType> filter)
         {
+            FilterValidations.ThowExepceptionIfFilterNull(filter);
+
             _filter = filter;
         }
 
