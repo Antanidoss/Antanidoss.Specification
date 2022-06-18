@@ -22,5 +22,11 @@ namespace QueryableFilterSpecification
         {
             return new WrapBracketsIQueryableFilterSpec<TEntityType>(filter);
         }
+
+        public static IQueryableFilterSpec<TEntityType> Not<TEntityType>(this IQueryableFilterSpec<TEntityType> filter)
+            where TEntityType : class
+        {
+            return new NotIQueryableFilterSpec<TEntityType>(filter);
+        }
     }
 }
