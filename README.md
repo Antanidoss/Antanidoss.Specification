@@ -4,12 +4,14 @@ If you like or are using this project please give it a star. Thanks!
 
 # Install
 
+Current version of nuget package - https://www.nuget.org/packages/QueryableFilterSpecification/
+
 The framework is provided as a set of NuGet packages.
 
 To install the minimum requirements:
 
 ```
-Install-Package QueryableFilterSpecification -Version 1.0.0
+Install-Package QueryableFilterSpecification
 ```
 
 ## Usage
