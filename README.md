@@ -107,11 +107,11 @@ var filterByName = new PersonByNameFilterSpec("Anton");
 _personRepository.GetFilter(filterByName);
 
 //Search by name or age
-var filterByNameOrAge = new PersonByNameFilterSpec("Anton").And(new PersonByAgeFilterSpec(20));
+var filterByNameOrAge = new PersonByNameFilterSpec("Anton").Or(new PersonByAgeFilterSpec(20));
 _personRepository.GetFilter(filterByNameOrAge);
 
 //Search by name and age
 var filterByNameAndAge = new PersonByNameFilterSpec("Anton").And(new PersonByAgeFilterSpec(20));
 _personRepository.GetFilter(filterByNameAndAge);
 ```
-Thus, you can connect and combine filters as much as you like.
+Thus, you can connect and combine filters as much as you like. At the moment, you can connect filters using AND, Or, wrap filters in brackets, add a Not condition to filters
