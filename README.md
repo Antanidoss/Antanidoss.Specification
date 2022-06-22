@@ -2,6 +2,16 @@
 
 If you like or are using this project please give it a star. Thanks!
 
+# Install
+
+The framework is provided as a set of NuGet packages.
+
+To install the minimum requirements:
+
+```
+Install-Package QueryableFilterSpecification -Version 1.0.0
+```
+
 ## Usage
 
 This project is needed to facilitate the use of filters on large projects.
