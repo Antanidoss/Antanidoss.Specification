@@ -1,6 +1,5 @@
 ﻿using QueryableFilterSpecification.Interfaces;
 using System;
-using System.Linq;
 
 namespace QueryableFilterSpecification.Validations
 {
