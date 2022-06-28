@@ -4,16 +4,11 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace QueryableFilterSpecification.Implementation
+namespace QueryableFilterSpecification.Implementation.Specifications
 {
-    public class EmptyQueryableFilterSpec<TEntityType> : IQueryableFilterSpec<TEntityType>
+    public class EmptySpecification<TEntityType> : ISpecification<TEntityType>
         where TEntityType : class
     {
-        public IQueryable<TEntityType> ApplyFilter(IQueryable<TEntityType> entities)
-        {
-            return entities.Where(ToExpression());
-        }
-
         public Expression<Func<TEntityType, bool>> ToExpression()
         {
             return PredicateBuilder.New<TEntityType>();
