@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace QueryableFilterSpecification.Interfaces
+namespace Antanidoss.Specification.Interfaces
 {
     public interface ISpecification<TEntity>
         where TEntity : class

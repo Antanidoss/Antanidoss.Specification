@@ -1,20 +1,19 @@
 ﻿using LinqKit;
-using QueryableFilterSpecification.Interfaces;
-using QueryableFilterSpecification.Validations;
+using Antanidoss.Specification.Interfaces;
+using Antanidoss.Specification.Validations;
 using System;
-using System.Linq;
 using System.Linq.Expressions;
 
-namespace QueryableFilterSpecification.Implementation.Specifications
+namespace Antanidoss.Specification.Implementation.Specifications
 {
-    public class AndSpecification<TEntityType> : ISpecification<TEntityType>
-        where TEntityType : class
+    public class AndSpecification<TEntity> : ISpecification<TEntity>
+        where TEntity : class
     {
-        private readonly ISpecification<TEntityType> _firstSpecification;
+        private readonly ISpecification<TEntity> _firstSpecification;
 
-        private readonly ISpecification<TEntityType> _secondSpecification;
+        private readonly ISpecification<TEntity> _secondSpecification;
 
-        public AndSpecification(ISpecification<TEntityType> firstSpecification, ISpecification<TEntityType> secondSpecification)
+        public AndSpecification(ISpecification<TEntity> firstSpecification, ISpecification<TEntity> secondSpecification)
         {
             SpecificationValidations.ThowExepceptionIfSpecificationNull(firstSpecification);
             SpecificationValidations.ThowExepceptionIfSpecificationNull(secondSpecification);
@@ -23,7 +22,7 @@ namespace QueryableFilterSpecification.Implementation.Specifications
             _secondSpecification = secondSpecification;
         }
 
-        public Expression<Func<TEntityType, bool>> ToExpression()
+        public Expression<Func<TEntity, bool>> ToExpression()
         {
             return _firstSpecification.ToExpression().And(_secondSpecification.ToExpression());
         }

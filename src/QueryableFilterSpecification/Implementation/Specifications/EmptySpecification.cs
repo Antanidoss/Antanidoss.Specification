@@ -1,17 +1,16 @@
 ﻿using LinqKit;
-using QueryableFilterSpecification.Interfaces;
+using Antanidoss.Specification.Interfaces;
 using System;
-using System.Linq;
 using System.Linq.Expressions;
 
-namespace QueryableFilterSpecification.Implementation.Specifications
+namespace Antanidoss.Specification.Implementation.Specifications
 {
-    public class EmptySpecification<TEntityType> : ISpecification<TEntityType>
-        where TEntityType : class
+    public class EmptySpecification<TEntity> : ISpecification<TEntity>
+        where TEntity : class
     {
-        public Expression<Func<TEntityType, bool>> ToExpression()
+        public Expression<Func<TEntity, bool>> ToExpression()
         {
-            return PredicateBuilder.New<TEntityType>();
+            return PredicateBuilder.New<TEntity>();
         }
     }
 }

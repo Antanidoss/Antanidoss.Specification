@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1</TargetFrameworks>
+		<PackageId>Antanidoss.Specification</PackageId>
+		<Title>Antanidoss.Specification</Title>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Anton Sadovskiy (@Antanidoss)</Authors>
+		<PackageProjectUrl>https://github.com/Antanidoss/Antanidoss.Specification</PackageProjectUrl>
+		<Description>Specification that can be combined</Description>
+		<Summary>Specification that can be combined</Summary>
+		<RepositoryUrl>https://github.com/Antanidoss/Antanidoss.Specification</RepositoryUrl>
+		<PackageTags>filters</PackageTags>
+		<Version>1.0.0</Version>
+		<AssemblyName>Antanidoss.Specification</AssemblyName>
+		<Features>strict</Features>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="LinqKit" Version="1.2.2" />
+	</ItemGroup>
+
+</Project>
