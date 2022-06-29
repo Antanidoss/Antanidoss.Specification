@@ -4,14 +4,14 @@ If you like or are using this project please give it a star. Thanks!
 
 # Install
 
-Current version of nuget package - https://www.nuget.org/packages/QueryableFilterSpecification/
+Current version of nuget package - https://www.nuget.org/packages/Antanidoss.Specification/1.0.0
 
 The framework is provided as a set of NuGet packages.
 
 To install the minimum requirements:
 
 ```
-Install-Package QueryableFilterSpecification
+Install-Package Antanidoss.Specification
 ```
 
 ## Usage
