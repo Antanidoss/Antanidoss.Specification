@@ -1,10 +1,10 @@
 ﻿using LinqKit;
-using QueryableFilterSpecification.Interfaces;
-using QueryableFilterSpecification.Validations;
+using Antanidoss.Specification.Interfaces;
+using Antanidoss.Specification.Validations;
 using System;
 using System.Linq.Expressions;
 
-namespace QueryableFilterSpecification.Implementation.Specifications
+namespace Antanidoss.Specification.Implementation.Specifications
 {
     public class WrapBracketsSpecification<TEntity> : ISpecification<TEntity>
         where TEntity : class

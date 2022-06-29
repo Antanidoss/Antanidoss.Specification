@@ -1,7 +1,7 @@
-﻿using QueryableFilterSpecification.Interfaces;
+﻿using Antanidoss.Specification.Interfaces;
 using System;
 
-namespace QueryableFilterSpecification.Validations
+namespace Antanidoss.Specification.Validations
 {
     internal static class SpecificationValidations
     {
