@@ -46,18 +46,13 @@ What solution do I propose? I propose to implement filters as a specification pa
 Let's make the following filter specifications
 
 ```csharp
-public class PersonByNameFilterSpec : IQueryableFilterSpec<Person>
+public class PersonByNameSpec : ISpecification<Person>
 {
     private readonly string _name;
 
-    public PersonByNameFilterSpec(string name)
+    public PersonByNameSpec(string name)
     {
         _name = name;
-    }
-
-    public IQueryable<Person> ApplyFilter(IQueryable<Person> persons)
-    {
-        return persons.Where(ToExpression());
     }
 
     public Expression<Func<Person, bool>> ToExpression()
@@ -66,18 +61,13 @@ public class PersonByNameFilterSpec : IQueryableFilterSpec<Person>
     }
 }
 
-public class PersonByAgeFilterSpec : IQueryableFilterSpec<Person>
+public class PersonByAgeSpec : ISpecification<Person>
 {
     private readonly int _age;
 
-    public PersonByAgeFilterSpec(int age)
+    public PersonByAgeSpec(int age)
     {
         _age = age;
-    }
-
-    public IQueryable<Person> ApplyFilter(IQueryable<Person> persons)
-    {
-        return persons.Where(ToExpression());
     }
 
     public Expression<Func<Person, bool>> ToExpression()
@@ -87,7 +77,7 @@ public class PersonByAgeFilterSpec : IQueryableFilterSpec<Person>
 }
 ```
 
-Now we have specification filters. Let's change our IPersonRepository
+Now we have specification. Let's change our IPersonRepository
 
 
 ```csharp
@@ -105,9 +95,9 @@ public class PersonRepository : IPersonRepository
         _context = context;
     }
 
-    public IEnumerable<Person> GetFilter(IQueryableFilterSpec<Person> filter)
+    public IEnumerable<Person> GetBySpecification(ISpecification<Person> specification)
     {
-        return filter.ApplyFilter(_context.Persons);
+        return _context.Persons.Where(specification.ToExpression());
     }
 }
 ```
@@ -115,15 +105,15 @@ public class PersonRepository : IPersonRepository
 Excellent! But how do we search by name and age?
 ```csharp
 //Search by name
-var filterByName = new PersonByNameFilterSpec("Anton");
-_personRepository.GetFilter(filterByName);
+var specification = new PersonByNameSpec("Anton");
+_personRepository.GetBySpecification(specification);
 
 //Search by name or age
-var filterByNameOrAge = new PersonByNameFilterSpec("Anton").Or(new PersonByAgeFilterSpec(20));
-_personRepository.GetFilter(filterByNameOrAge);
+var specification = new PersonByNameSpec("Anton").Or(new PersonByAgeSpec(20));
+_personRepository.GetBySpecification(specification);
 
 //Search by name and age
-var filterByNameAndAge = new PersonByNameFilterSpec("Anton").And(new PersonByAgeFilterSpec(20));
-_personRepository.GetFilter(filterByNameAndAge);
+var specification = new PersonByNameSpec("Anton").And(new PersonByAgeSpec(20));
+_personRepository.GetBySpecification(specification);
 ```
-Thus, you can connect and combine filters as much as you like. At the moment, you can connect filters using AND, Or, wrap filters in brackets, add a Not condition to filters
+Thus, you can connect and combine specifications as much as you like. At the moment, you can connect filters using AND, Or, wrap filters in brackets, add a Not condition to filters
