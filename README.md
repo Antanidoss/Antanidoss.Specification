@@ -83,7 +83,7 @@ Now we have specification. Let's change our IPersonRepository
 ```csharp
 public interface IPersonRepository
 {
-    IEnumerable<Person> GetFilter(IQueryableFilterSpec<Person> filter);
+    IEnumerable<Person> GetFilter(ISpecification<Person> specification);
 }
 
 public class PersonRepository : IPersonRepository
