@@ -16,7 +16,7 @@ Install-Package Antanidoss.Specification
 
 ## Usage
 
-This project is needed to facilitate the use of filters on large projects.
+This project is needed to facilitate the use of specifications on large projects.
 For example, there is the following class
 
 
@@ -116,4 +116,4 @@ _personRepository.GetBySpecification(specification);
 var specification = new PersonByNameSpec("Anton").And(new PersonByAgeSpec(20));
 _personRepository.GetBySpecification(specification);
 ```
-Thus, you can connect and combine specifications as much as you like. At the moment, you can connect filters using AND, Or, wrap filters in brackets, add a Not condition to filters
+Thus, you can connect and combine specifications as much as you like. At the moment, you can connect filters using AND (&&), OR (||), NOT (!), wrap filters in brackets, add a Not condition to filters
