@@ -20,7 +20,9 @@ namespace Antanidoss.Specification.Implementation.Specifications
 
         public Expression<Func<TEntity, bool>> ToExpression()
         {
-            return PredicateBuilder.New<TEntity>(e => _specification.ToExpression().Compile().Invoke(e));
+            Expression<Func<TEntity, bool>> expression = e => _specification.ToExpression().Invoke(e);
+
+            return expression.Expand();
         }
     }
 }
