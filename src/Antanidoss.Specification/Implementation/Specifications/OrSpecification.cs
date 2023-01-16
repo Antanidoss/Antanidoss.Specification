@@ -1,19 +1,19 @@
 ﻿using LinqKit;
-using Antanidoss.Specification.Interfaces;
+using Antanidoss.Specification.Abstract;
 using Antanidoss.Specification.Validations;
 using System;
 using System.Linq.Expressions;
 
 namespace Antanidoss.Specification.Implementation.Specifications
 {
-    public class OrSpecification<TEntity> : ISpecification<TEntity>
+    public class OrSpecification<TEntity> : Specification<TEntity>
         where TEntity : class
     {
-        private readonly ISpecification<TEntity> _firstSpecification;
+        private readonly Specification<TEntity> _firstSpecification;
 
-        private readonly ISpecification<TEntity> _secondSpecification;
+        private readonly Specification<TEntity> _secondSpecification;
 
-        public OrSpecification(ISpecification<TEntity> firstSpecification, ISpecification<TEntity> secondSpecification)
+        public OrSpecification(Specification<TEntity> firstSpecification, Specification<TEntity> secondSpecification)
         {
             SpecificationValidations.ThowExepceptionIfSpecificationNull(firstSpecification);
             SpecificationValidations.ThowExepceptionIfSpecificationNull(secondSpecification);
@@ -22,9 +22,9 @@ namespace Antanidoss.Specification.Implementation.Specifications
             _secondSpecification = secondSpecification;
         }
 
-        public Expression<Func<TEntity, bool>> ToExpression()
+        public override Expression<Func<TEntity, bool>> ToExpression()
         {
-            return _firstSpecification.ToExpression().Or(_secondSpecification.ToExpression());
+            return _firstSpecification.ToExpression().Or(_secondSpecification);
         }
     }
 }
