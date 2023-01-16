@@ -1,11 +1,11 @@
 ﻿using LinqKit;
-using Antanidoss.Specification.Interfaces;
+using Antanidoss.Specification.Abstract;
 using System;
 using System.Linq.Expressions;
 
 namespace Antanidoss.Specification.Implementation.Specifications
 {
-    public class EmptySpecification<TEntity> : ISpecification<TEntity>
+    public class EmptySpecification<TEntity> : Specification<TEntity>
         where TEntity : class
     {
         private readonly bool _defaultExpressionResult;
@@ -15,7 +15,7 @@ namespace Antanidoss.Specification.Implementation.Specifications
             _defaultExpressionResult = defaultExpressionResult;
         }
 
-        public Expression<Func<TEntity, bool>> ToExpression()
+        public override Expression<Func<TEntity, bool>> ToExpression()
         {
             return PredicateBuilder.New<TEntity>(_defaultExpressionResult);
         }

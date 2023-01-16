@@ -1,24 +1,24 @@
 ﻿using LinqKit;
-using Antanidoss.Specification.Interfaces;
+using Antanidoss.Specification.Abstract;
 using Antanidoss.Specification.Validations;
 using System;
 using System.Linq.Expressions;
 
 namespace Antanidoss.Specification.Implementation.Specifications
 {
-    public class WrapBracketsSpecification<TEntity> : ISpecification<TEntity>
+    public class WrapBracketsSpecification<TEntity> : Specification<TEntity>
         where TEntity : class
     {
-        private readonly ISpecification<TEntity> _specification;
+        private readonly Specification<TEntity> _specification;
 
-        public WrapBracketsSpecification(ISpecification<TEntity> specification)
+        public WrapBracketsSpecification(Specification<TEntity> specification)
         {
             SpecificationValidations.ThowExepceptionIfSpecificationNull(specification);
 
             _specification = specification;
         }
 
-        public Expression<Func<TEntity, bool>> ToExpression()
+        public override Expression<Func<TEntity, bool>> ToExpression()
         {
             Expression<Func<TEntity, bool>> expression = e => _specification.ToExpression().Invoke(e);
 
