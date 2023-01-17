@@ -46,7 +46,7 @@ What solution do I propose? I propose to implement filters as a specification pa
 Let's make the following filter specifications
 
 ```csharp
-public class PersonByNameSpec : ISpecification<Person>
+public class PersonByNameSpec : Specification<Person>
 {
     private readonly string _name;
 
@@ -61,7 +61,7 @@ public class PersonByNameSpec : ISpecification<Person>
     }
 }
 
-public class PersonByAgeSpec : ISpecification<Person>
+public class PersonByAgeSpec : Specification<Person>
 {
     private readonly int _age;
 
@@ -83,7 +83,7 @@ Now we have specification. Let's change our IPersonRepository
 ```csharp
 public interface IPersonRepository
 {
-    IEnumerable<Person> GetBySpecification(ISpecification<Person> specification);
+    IEnumerable<Person> GetBySpecification(Specification<Person> specification);
 }
 
 public class PersonRepository : IPersonRepository
@@ -95,9 +95,9 @@ public class PersonRepository : IPersonRepository
         _context = context;
     }
 
-    public IEnumerable<Person> GetBySpecification(ISpecification<Person> specification)
+    public IEnumerable<Person> GetBySpecification(Specification<Person> specification)
     {
-        return _context.Persons.Where(specification.ToExpression());
+        return _context.Persons.Where(specification);
     }
 }
 ```
@@ -109,11 +109,11 @@ var specification = new PersonByNameSpec("Anton");
 _personRepository.GetBySpecification(specification);
 
 //Search by name or age
-var specification = new PersonByNameSpec("Anton").Or(new PersonByAgeSpec(20));
+var specification = new PersonByNameSpec("Anton") | new PersonByAgeSpec(20);
 _personRepository.GetBySpecification(specification);
 
 //Search by name and age
-var specification = new PersonByNameSpec("Anton").And(new PersonByAgeSpec(20));
+var specification = new PersonByNameSpec("Anton") & new PersonByAgeSpec(20);
 _personRepository.GetBySpecification(specification);
 ```
 Thus, you can connect and combine specifications as much as you like. At the moment, you can connect filters using AND (&&), OR (||), NOT (!), wrap filters in brackets, add a Not condition to filters
