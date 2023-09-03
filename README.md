@@ -117,4 +117,3 @@ var specification = new PersonByNameSpec("Anton") & new PersonByAgeSpec(20);
 _personRepository.GetBySpecification(specification);
 ```
 Thus, you can connect and combine specifications as much as you like. At the moment, you can connect filters using AND (&&), OR (||), NOT (!), wrap filters in brackets, add a Not condition to filters
-If you need to organize filtering using these specifications, then I advise you to take a closer look at this project - https://github.com/Antanidoss/Antanidoss.Specification.Filters
